@@ -137,5 +137,31 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.lineHeight": 1,
   "terminal.integrated.drawBoldTextInBrightColors": true,
-  "claudeCode.allowDangerouslySkipPermissions": true
+  "claudeCode.allowDangerouslySkipPermissions": true,
+  "claudeCode.preferredLocation": "panel",
+  "claudeCode.hideOnboarding": true,
+  "search.exclude": {
+    "**/.claude/worktrees": true,
+    "**/node_modules": true
+  },
+  "files.watcherExclude": {
+    "**/.claude/worktrees/**": true,
+    "**/node_modules/**": true
+  },
+  "git.branchProtection": [
+    "main",
+    "master"
+  ],
+  "git.branchProtectionPrompt": "alwaysPrompt",
+  "editor.stickyScroll.enabled": true,
+  "editor.linkedEditing": true,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "package.json": "package-lock.json, pnpm-lock.yaml, yarn.lock, bun.lockb, .npmrc, .nvmrc",
+    "pyproject.toml": "uv.lock, poetry.lock, requirements*.txt, .python-version",
+    ".env": ".env.*"
+  },
+  "markdown.validate.enabled": true,
+  "workbench.iconTheme": "gruvbox-material-icon-theme"
 }
