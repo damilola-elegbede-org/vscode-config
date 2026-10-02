@@ -24,7 +24,8 @@ make bootstrap   # Homebrew: VS Code, JetBrainsMono Nerd Font, shfmt; then apply
 make check       # expect: in sync
 ```
 
-Or open Claude Code in the clone and say "set up my VS Code".
+Or let Claude do it: the step-by-step runbook is [`INSTALL.md`](INSTALL.md)
+(prerequisites, verification checks, known problems and fixes).
 Needs Homebrew. Optional: Xcode (Swift formatting), Terraform, Docker.
 
 ## Commands

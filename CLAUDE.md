@@ -8,14 +8,9 @@ never commit on `main`.
 
 ## Fresh Mac ("set up my VS Code")
 
-1. Claude Code's config is NOT in this repo. The VS Code extension reads
-   `~/.claude` (settings sources user/project/local), so sync claude-config
-   first: `git clone https://github.com/damilola-elegbede-org/claude-config.git`
-   then `./claude-config/scripts/sync.sh`.
-2. `make plan`, show D, then `make bootstrap` (Homebrew required).
-3. `make check` must print `in sync`; report it verbatim.
-4. Tell D to open VS Code once. Optional tools the config uses if present:
-   Xcode (Swift formatting), Terraform, Docker.
+Follow `INSTALL.md` step by step: prerequisites, claude-config first, plan,
+bootstrap, first launch, verify. Report every check verbatim. If the repo
+itself is wrong, fix it on a branch and open a PR; do not patch around it.
 
 ## Changing the config
 

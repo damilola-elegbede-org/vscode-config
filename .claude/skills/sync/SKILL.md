@@ -13,7 +13,7 @@ Run from a clone of this repository. Pick the mode from `$ARGUMENTS` (default: `
 | `apply` | `make plan`, show it, then `make apply` | push the repo to VS Code |
 | `prune` | `make plan`, then `make prune` | apply and uninstall extensions removed from the list |
 | `capture` | `make capture`, then `git diff --stat` + meaningful hunks | save VS Code changes into the repo |
-| `bootstrap` | see CLAUDE.md "Fresh Mac" | new machine |
+| `bootstrap` | follow `INSTALL.md` step by step | new machine |
 
 ## Rules
 
