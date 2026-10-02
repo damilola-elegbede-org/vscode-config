@@ -53,11 +53,14 @@ def dump(data):
     return json.dumps(data, indent=2, ensure_ascii=False) + "\n"
 
 
-def check_leak(path, text):
-    for label, rx in LEAKS:
-        hit = rx.search(text)
-        if hit:
-            sys.exit(f"error: {path} contains a {label} ({hit.group(0)[:24]}...); refusing to capture into a public repo.")
+def check_leak(path, data):
+    """Exit naming the leak type and top-level key only; never echo the matched value."""
+    items = data.items() if isinstance(data, dict) else enumerate(data)
+    for key, value in items:
+        text = json.dumps({str(key): value}, ensure_ascii=False)
+        for label, rx in LEAKS:
+            if rx.search(text):
+                sys.exit(f"error: {path}: key '{key}' contains a {label}; refusing to capture into a public repo.")
 
 
 def main():
@@ -67,13 +70,15 @@ def main():
             load_strict(path)
     elif cmd == "capture-settings":  # capture-settings LIVE DEST: strip local keys, refuse leaks
         src, dest = args
-        out = dump(strip(load_strict(src)))
-        check_leak(src, out)
+        data = strip(load_strict(src))
+        check_leak(src, data)
+        out = dump(data)
         Path(dest).write_text(out)
     elif cmd == "capture-json":  # capture-json LIVE DEST (keybindings: no strip)
         src, dest = args
-        out = dump(load_strict(src))
-        check_leak(src, out)
+        data = load_strict(src)
+        check_leak(src, data)
+        out = dump(data)
         Path(dest).write_text(out)
     elif cmd == "apply-settings":  # apply-settings REPO LIVE DEST: repo keys + the live machine's local keys
         repo, live, dest = args

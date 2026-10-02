@@ -146,5 +146,21 @@ before="$(find "$T/user/.vscode-config-backups" -mindepth 1 -maxdepth 1 -type d 
 after="$(find "$T/user/.vscode-config-backups" -mindepth 1 -maxdepth 1 -type d | wc -l)"
 (( after - before == 2 )) && ok "each apply gets its own backup" || bad "each apply gets its own backup"
 
+# 17. Leak errors name the key, never the secret value.
+edit_live "d['foo.token']='ghp_abcdefghijklmnopqrstuvwxyz0123'"
+out="$("$ROOT/scripts/capture.sh" 2>&1 || true)"
+grep -q "foo.token" <<<"$out" && ! grep -q "ghp_" <<<"$out" && ok "leak error hides the secret" || bad "leak error hides the secret"
+edit_live 'd.pop("foo.token")'
+
+# 18. An empty extension list is valid (apply and check don't crash).
+cp "$T/repo/extensions.txt" "$T/ext.keep"; printf '# none\n' > "$T/repo/extensions.txt"
+"$ROOT/scripts/apply.sh" >/dev/null 2>&1 && ok "empty extension list applies" || bad "empty extension list applies"
+cp "$T/ext.keep" "$T/repo/extensions.txt"
+
+# 19. A failing `code` CLI aborts apply before any live file changes.
+cp "$T/user/settings.json" "$T/live.before"; edit_live 'd["editor.fontSize"]=99'; cp "$T/user/settings.json" "$T/live.before"
+FAKE_CODE_FAIL=1 "$ROOT/scripts/apply.sh" >/dev/null 2>&1 && bad "broken code CLI aborts apply" || {
+  cmp -s "$T/live.before" "$T/user/settings.json" && ok "broken code CLI aborts apply untouched" || bad "broken code CLI aborts apply untouched"; }
+
 echo "$pass passed, $fail failed"
 (( fail == 0 ))

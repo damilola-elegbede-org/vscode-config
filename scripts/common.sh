@@ -12,6 +12,6 @@ REPO_USER_DIR="$REPO_CONFIG_DIR/Code/User"
 EXTENSIONS_FILE="$REPO_CONFIG_DIR/extensions.txt"
 
 # Extension IDs from the repo list: lowercase, no CR, no blanks or comments, sorted.
-repo_extensions() { tr -d '\r' < "$EXTENSIONS_FILE" | tr '[:upper:]' '[:lower:]' | grep -v -e '^[[:space:]]*$' -e '^#' | sort -u; }
+repo_extensions() { tr -d '\r' < "$EXTENSIONS_FILE" | tr '[:upper:]' '[:lower:]' | { grep -v -e '^[[:space:]]*$' -e '^#' || true; } | sort -u; }
 live_extensions() { "$CODE_BIN" --list-extensions | tr -d '\r' | tr '[:upper:]' '[:lower:]' | sort -u; }
 have_code() { command -v "$CODE_BIN" >/dev/null 2>&1; }

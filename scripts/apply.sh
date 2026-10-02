@@ -27,6 +27,12 @@ if (( ! FORCE )) && git -C "$REPO_ROOT" rev-parse --verify -q origin/main >/dev/
 fi
 
 if (( ! DRY )) && ! have_code; then echo "error: '$CODE_BIN' not on PATH (run make bootstrap)"; exit 1; fi
+# Read extension state before changing anything, so a broken `code` CLI aborts with VS Code untouched.
+wanted="$(repo_extensions)"
+installed=""
+if have_code; then
+  installed="$(live_extensions)" || { echo "error: '$CODE_BIN --list-extensions' failed; nothing changed"; exit 1; }
+fi
 
 run mkdir -p "$VSCODE_USER_DIR/.vscode-config-backups"
 if (( DRY )); then backup="$VSCODE_USER_DIR/.vscode-config-backups/<new>"
@@ -46,8 +52,6 @@ run cp "$REPO_USER_DIR/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
 if [[ -d "$VSCODE_USER_DIR/snippets" ]]; then run mv "$VSCODE_USER_DIR/snippets" "$backup/snippets"; fi
 if [[ -d "$REPO_USER_DIR/snippets" ]]; then run cp -R "$REPO_USER_DIR/snippets" "$VSCODE_USER_DIR/snippets"; fi
 
-wanted="$(repo_extensions)"
-installed=""; have_code && installed="$(live_extensions)"
 while IFS= read -r ext; do
   [[ -z "$ext" ]] && continue
   grep -Fqx "$ext" <<<"$installed" || run "$CODE_BIN" --install-extension "$ext"

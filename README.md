@@ -37,7 +37,7 @@ Needs Homebrew. Optional: Xcode (Swift formatting), Terraform, Docker.
 | `make prune` | `apply`, plus uninstall extensions not in `extensions.txt`. |
 | `make capture` | VS Code → repo. Staged: on any refusal the repo is untouched. |
 | `make check` | Settings, keybindings and extensions drift. |
-| `make test` / `make lint` | 31 hermetic tests / ShellCheck + actionlint. |
+| `make test` / `make lint` | 34 hermetic tests / ShellCheck + actionlint. |
 | `/sync [check\|apply\|prune\|capture\|bootstrap]` | Claude Code skill in `.claude/skills/sync/` that runs the above with guardrails. |
 
 ## What stays local
