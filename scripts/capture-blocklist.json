@@ -1,0 +1,27 @@
+{
+  "_comment": "Machine-local or secret-bearing settings keys. Capture never writes them to the repo; apply keeps the live machine's values. Exact keys, or glob patterns.",
+  "keys": [
+    "window.zoomLevel",
+    "window.newWindowDimensions",
+    "window.restoreWindows",
+    "workbench.panel.defaultLocation",
+    "security.workspace.trust.*",
+    "remote.SSH.*",
+    "terminal.integrated.cwd",
+    "terminal.integrated.shellIntegration.history",
+    "python.defaultInterpreterPath",
+    "python.venvPath",
+    "*.executablePath",
+    "*.interpreterPath",
+    "git.defaultCloneDirectory",
+    "git.openRepositoryInParentFolders",
+    "github.copilot.*",
+    "update.*",
+    "workbench.welcomePage.*",
+    "settingsSync.*",
+    "extensions.autoUpdate",
+    "rest-client.environmentVariables",
+    "sqltools.connections",
+    "claudeCode.environmentVariables"
+  ]
+}
