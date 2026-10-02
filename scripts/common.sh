@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Shared paths. Override VSCODE_USER_DIR / CODE_BIN / REPO_CONFIG_DIR for tests or non-default installs.
+# shellcheck disable=SC2034  # consumed by the scripts that source this file
+set -euo pipefail
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+REPO_CONFIG_DIR="${REPO_CONFIG_DIR:-$REPO_ROOT/system-configs}"
+VSCODE_USER_DIR="${VSCODE_USER_DIR:-$HOME/Library/Application Support/Code/User}"
+CODE_BIN="${CODE_BIN:-code}"
+HELPER="$REPO_ROOT/scripts/vsconfig.py"
+REPO_USER_DIR="$REPO_CONFIG_DIR/Code/User"
+EXTENSIONS_FILE="$REPO_CONFIG_DIR/extensions.txt"
+
+live_extensions() { "$CODE_BIN" --list-extensions | tr '[:upper:]' '[:lower:]' | sort; }

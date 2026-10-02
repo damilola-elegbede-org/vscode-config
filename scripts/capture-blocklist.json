@@ -1,0 +1,24 @@
+{
+  "_comment": "Settings keys stripped by capture. Exact keys, or prefixes ending in '*'. Machine-specific or private state only.",
+  "keys": [
+    "window.zoomLevel",
+    "window.newWindowDimensions",
+    "window.restoreWindows",
+    "workbench.panel.defaultLocation",
+    "security.workspace.trust.*",
+    "telemetry.machineId",
+    "remote.SSH.*",
+    "terminal.integrated.cwd",
+    "terminal.integrated.shellIntegration.history",
+    "python.defaultInterpreterPath",
+    "python.venvPath",
+    "git.defaultCloneDirectory",
+    "git.openRepositoryInParentFolders",
+    "github.copilot.*",
+    "chat.*",
+    "update.*",
+    "workbench.welcomePage.*",
+    "settingsSync.*",
+    "extensions.autoUpdate"
+  ]
+}
