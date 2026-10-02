@@ -1,45 +1,47 @@
 # vscode-config
 
-Source of truth for D's VS Code setup on macOS. The repo owns `settings.json`,
-`keybindings.json`, `snippets/` (if any) and the extension list. Nothing is
-symlinked; sync is manual and two-way.
+Source of truth for D's VS Code on macOS. The repo owns `settings.json`,
+`keybindings.json`, `snippets/` (if any) and `extensions.txt`. Sync is manual
+and two-way; use the `/sync` skill (`.claude/skills/sync/SKILL.md`) for every
+sync request. It holds the rules: check first, ask D when both sides changed,
+never commit on `main`.
 
-## When D says "set up my VS Code" (fresh Mac)
+## Fresh Mac ("set up my VS Code")
 
-0. Claude Code's own config (skills, agents, output styles, hooks, MCP,
-   `permissions.defaultMode`) is NOT in this repo. The VS Code extension reads
-   `~/.claude` (settingSources user/project/local), so sync claude-config first
-   or the extension starts with a bare `~/.claude`.
-1. `make bootstrap` — installs VS Code, JetBrainsMono Nerd Font and shfmt via
-   Homebrew, then applies the config and installs every extension.
-2. `make check` — must print `in sync`. Report its output verbatim.
-3. Tell D to open VS Code once; first launch finishes extension activation.
+1. Claude Code's config is NOT in this repo. The VS Code extension reads
+   `~/.claude` (settings sources user/project/local), so sync claude-config
+   first: `git clone https://github.com/damilola-elegbede-org/claude-config.git`
+   then `./claude-config/scripts/sync.sh`.
+2. `make plan`, show D, then `make bootstrap` (Homebrew required).
+3. `make check` must print `in sync`; report it verbatim.
+4. Tell D to open VS Code once. Optional tools the config uses if present:
+   Xcode (Swift formatting), Terraform, Docker.
 
-## When D says "apply" / "push my config to VS Code"
+## Changing the config
 
-`make plan` first and show D what will change, then `make apply`. Existing
-files are backed up to `~/Library/Application Support/Code/User/.vscode-config-backups/<timestamp>/`.
-
-## When D says "capture" / "save my VS Code changes"
-
-1. `make capture`
-2. Show D `git diff --stat` and the meaningful hunks.
-3. On D's go-ahead: branch, commit, PR (ready for review).
-
-Capture strips machine-specific keys listed in `scripts/capture-blocklist.json`
-and refuses any file containing a `/Users/<name>` path, because this repo is
-public. If capture fails with "not strict JSON", remove comments or trailing
-commas from the VS Code file and re-run; do not hand-edit around it.
+- Prefer `make capture` from a live VS Code over hand edits. Hand edits to
+  `system-configs/` must stay strict JSON, 2-space, sorted extension list.
+- New extension: install it with `code --install-extension <id>` first; only
+  commit IDs that installed. If it formats a language, add a `[lang]` block
+  with `editor.defaultFormatter` + `editor.formatOnSave`, and add it to
+  `FORMATTERS` in `tests/test.sh` (test 14 fails otherwise).
+- New theme or setting ID: copy names exactly from the extension's
+  `package.json` — a wrong theme label silently falls back to the default.
+- Machine-local or secret-bearing key: add it to
+  `scripts/capture-blocklist.json` so capture drops it and apply keeps it.
 
 ## Rules
 
-- Never commit secrets, tokens, or machine paths. The repo is public.
-- `claudeCode.allowDangerouslySkipPermissions: true` is the only Claude
-  permission setting here: it unblocks the `bypassPermissions` default set in
-  `~/.claude/settings.json`. Leave `claudeCode.initialPermissionMode` unset so
-  `~/.claude` stays the single source of truth.
-- MCP servers are not configured here; Claude Code reads them from `~/.claude`
-  (managed by claude-config).
-- Run `make test` before every commit. CI runs ShellCheck and the same tests.
-- A new extension goes in via VS Code then `make capture`, or by editing
-  `system-configs/extensions.txt` (sorted, lowercase) then `make apply`.
+- Public repo: never commit secrets, tokens, emails, or machine paths. The
+  capture guard refuses them; tell D which key tripped it.
+- `make test` and `make lint` before every commit. CI must be green to merge.
+- MCP servers, skills, agents, output styles, hooks and the permission mode
+  live in `~/.claude` (claude-config). The only Claude setting here is
+  `claudeCode.allowDangerouslySkipPermissions: true`, which unblocks the
+  `bypassPermissions` default from `~/.claude/settings.json`; leave
+  `claudeCode.initialPermissionMode` unset.
+- Trusted folders are Claude's `trustedDirectories` in `~/.claude`, not VS Code
+  workspace trust (`security.workspace.trust.*` stays local).
+- `~/.zshrc` must keep its tmux auto-start guarded with `[ -t 1 ]` and
+  `$VSCODE_RESOLVING_ENVIRONMENT`, or VS Code reports "Unable to resolve your
+  shell environment".

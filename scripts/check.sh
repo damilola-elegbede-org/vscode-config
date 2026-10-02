@@ -3,12 +3,19 @@
 # shellcheck source=scripts/common.sh
 source "$(dirname "$0")/common.sh"
 drift=0
-python3 "$HELPER" validate "$VSCODE_USER_DIR/settings.json" "$VSCODE_USER_DIR/keybindings.json"
-python3 "$HELPER" same-settings "$REPO_USER_DIR/settings.json" "$VSCODE_USER_DIR/settings.json" \
-  || { echo "drift: settings.json"; drift=1; }
-python3 "$HELPER" same-json "$REPO_USER_DIR/keybindings.json" "$VSCODE_USER_DIR/keybindings.json" \
-  || { echo "drift: keybindings.json"; drift=1; }
-ext_diff="$(diff "$EXTENSIONS_FILE" <(live_extensions) || true)"
-[[ -n "$ext_diff" ]] && { echo "drift: extensions"; echo "$ext_diff"; drift=1; }
-(( drift )) && { echo "run 'make apply' (repo wins) or 'make capture' (VS Code wins)"; exit 1; }
+compare() {  # compare MODE FILE
+  local live="$VSCODE_USER_DIR/$2"
+  if [[ ! -f "$live" ]]; then echo "drift: $2 missing in VS Code"; drift=1; return; fi
+  python3 "$HELPER" validate "$live"
+  python3 "$HELPER" "$1" "$REPO_USER_DIR/$2" "$live" || { echo "drift: $2"; drift=1; }
+}
+compare same-settings settings.json
+compare same-json keybindings.json
+if have_code; then
+  ext_diff="$(diff <(repo_extensions) <(live_extensions) || true)"
+  [[ -n "$ext_diff" ]] && { echo "drift: extensions (< repo only, > VS Code only)"; echo "$ext_diff"; drift=1; }
+else
+  echo "drift: '$CODE_BIN' not on PATH; extensions not checked"; drift=1
+fi
+if (( drift )); then echo "run 'make apply' (repo wins) or 'make capture' (VS Code wins)"; exit 1; fi
 echo "in sync"
