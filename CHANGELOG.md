@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- JetBrains Mono everywhere VS Code allows a font setting: chat (including the
+  Claude Code panel), chat code blocks, debug console, commit message box,
+  notebook markdown.
+
 ## 0.1.0 — 2026-10-02
 
 - Initial configuration: Gruvbox Charcoal theme (Gruvbox Dark Hard on deep charcoal), Ghostty-matched terminal panel,

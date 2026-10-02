@@ -24,6 +24,11 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "markdown.preview.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace",
+  "chat.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', Menlo, monospace",
+  "chat.editor.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', Menlo, monospace",
+  "debug.console.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', Menlo, monospace",
+  "scm.inputFontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', Menlo, monospace",
+  "notebook.markup.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', Menlo, monospace",
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.profiles.osx": {
     "zsh": {
