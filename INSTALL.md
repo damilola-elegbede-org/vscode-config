@@ -59,8 +59,9 @@ applies settings, keybindings and 40 extensions. Safe to re-run. Notes about
 missing Terraform/Docker/Xcode are informational.
 
 Check: `which code` prints a path, and the run ends with `applied. backup: …`.
-If an extension install fails, re-run `make apply` once; if it fails again,
-record the ID and continue.
+If an extension install fails, re-run `make apply` once. If it fails again,
+stop: report the extension ID and the error to D, and do not continue to
+step 4 (step 5's `make check` cannot pass with it missing).
 
 ## 4. First launch (D)
 
