@@ -54,7 +54,7 @@ OpenAI, Slack, AWS, private keys).
 
 | Area | Choice | Source |
 | --- | --- | --- |
-| Theme | Gruvbox Dark Hard, Gruvbox Material icons; high-contrast auto-detect off | tmux status bar palette |
+| Theme | VS Code Dark Modern (D's pick); Gruvbox Material icons; high-contrast auto-detect off | Gruvbox themes stay installed to switch back |
 | Terminal panel | Ghostty's 16-color palette, `#28fe14` on black, red blinking block cursor, blue selection, copy-on-select, no contrast boost | `ghostty +show-config` |
 | Font | JetBrainsMono Nerd Font: editor 14, terminal 13, ligatures | Ghostty |
 | Editing | Format on save per language, ESLint/Ruff fixes on save, rulers 80/100, autosave on focus change, sticky scroll, linked HTML tags, lockfile nesting, no minimap | |
