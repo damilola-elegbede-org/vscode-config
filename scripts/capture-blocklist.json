@@ -15,7 +15,6 @@
     "git.defaultCloneDirectory",
     "git.openRepositoryInParentFolders",
     "github.copilot.*",
-    "chat.*",
     "update.*",
     "workbench.welcomePage.*",
     "settingsSync.*",
