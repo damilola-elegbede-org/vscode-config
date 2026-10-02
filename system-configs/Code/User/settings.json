@@ -242,5 +242,12 @@
   "rainbow_csv.virtual_alignment_char": "space",
   "rainbow_csv.virtual_alignment_vertical_grid": true,
   "rainbow_csv.enable_sticky_header": true,
-  "rainbow_csv.csv_lint_detect_trailing_spaces": true
+  "rainbow_csv.csv_lint_detect_trailing_spaces": true,
+  "files.associations": {
+    "*.sh.mutation": "shellscript"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml",
+    "editor.formatOnSave": true
+  }
 }
