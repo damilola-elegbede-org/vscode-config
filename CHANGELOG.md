@@ -2,7 +2,7 @@
 
 ## 0.1.0 — 2026-10-02
 
-- Initial configuration: Dark Modern theme, Ghostty-matched terminal panel,
+- Initial configuration: Gruvbox Black theme (Gruvbox Dark Hard on pure black), Ghostty-matched terminal panel,
   40 extensions, per-language formatters, tmux-style pane keys.
 - Manual two-way sync: `bootstrap`, `plan`, `apply`, `prune`, `capture`,
   `check`; `/sync` Claude skill.

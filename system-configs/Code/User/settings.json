@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Dark Modern",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
   "workbench.startupEditor": "none",
   "window.commandCenter": true,
   "editor.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', Menlo, monospace",
@@ -60,7 +60,27 @@
     "terminal.ansiBrightBlue": "#7aa6da",
     "terminal.ansiBrightMagenta": "#c397d8",
     "terminal.ansiBrightCyan": "#70c0b1",
-    "terminal.ansiBrightWhite": "#eaeaea"
+    "terminal.ansiBrightWhite": "#eaeaea",
+    "[Gruvbox Dark Hard]": {
+      "editor.background": "#000000",
+      "editorGutter.background": "#000000",
+      "sideBar.background": "#0b0b0b",
+      "sideBarSectionHeader.background": "#0b0b0b",
+      "activityBar.background": "#0b0b0b",
+      "statusBar.background": "#0b0b0b",
+      "titleBar.activeBackground": "#0b0b0b",
+      "titleBar.inactiveBackground": "#0b0b0b",
+      "editorGroupHeader.tabsBackground": "#0b0b0b",
+      "tab.inactiveBackground": "#0b0b0b",
+      "tab.activeBackground": "#000000",
+      "panel.background": "#000000",
+      "breadcrumb.background": "#000000",
+      "editorWidget.background": "#141414",
+      "input.background": "#141414",
+      "dropdown.background": "#141414",
+      "editor.lineHighlightBackground": "#1d2021",
+      "editorLineNumber.activeForeground": "#fabd2f"
+    }
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
