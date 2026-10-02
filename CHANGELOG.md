@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-- JetBrains Mono everywhere VS Code allows a font setting: chat (including the
+- JetBrainsMono Nerd Font only (no fallbacks) everywhere VS Code allows a font
+  setting: editor, markdown preview, chat (including the
   Claude Code panel), chat code blocks, debug console, commit message box,
   notebook markdown.
 
