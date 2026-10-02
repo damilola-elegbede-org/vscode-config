@@ -244,10 +244,19 @@
   "rainbow_csv.enable_sticky_header": true,
   "rainbow_csv.csv_lint_detect_trailing_spaces": true,
   "files.associations": {
-    "*.sh.mutation": "shellscript"
+    "*.sh.mutation": "shellscript",
+    "*.plist": "xml"
   },
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml",
     "editor.formatOnSave": true
+  },
+  "[swift]": {
+    "editor.defaultFormatter": "swiftlang.swift-vscode",
+    "editor.formatOnSave": true
+  },
+  "[sql]": {
+    "editor.defaultFormatter": "mtxr.sqltools",
+    "editor.formatOnSave": false
   }
 }

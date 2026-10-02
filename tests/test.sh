@@ -72,5 +72,24 @@ printf '// comment\n{"a": 1}\n' > "$T/user/settings.json"
 out="$("$ROOT/scripts/capture.sh" 2>&1 || true)"
 grep -q "not strict JSON" <<<"$out" && ok "capture rejects JSONC clearly" || bad "capture rejects JSONC clearly"
 
+# 10. Formatter coverage: every per-language formatter is an installed extension, and every
+#     known formatter extension in the list is wired to at least one language.
+if python3 - "$ROOT/system-configs" <<'PY2'
+import json, sys
+root = sys.argv[1]
+d = json.load(open(f"{root}/Code/User/settings.json"))
+exts = set(open(f"{root}/extensions.txt").read().split())
+used = {v["editor.defaultFormatter"] for k, v in d.items()
+        if k.startswith("[") and isinstance(v, dict) and "editor.defaultFormatter" in v}
+FORMATTERS = {"esbenp.prettier-vscode", "charliermarsh.ruff", "mkhl.shfmt", "redhat.vscode-yaml",
+              "hashicorp.terraform", "tamasfe.even-better-toml", "swiftlang.swift-vscode", "mtxr.sqltools"}
+missing = used - exts
+unwired = (FORMATTERS & exts) - used
+if missing or unwired:
+    print("formatter not installed:", sorted(missing), "| installed but unwired:", sorted(unwired))
+    sys.exit(1)
+PY2
+then ok "formatter coverage"; else bad "formatter coverage"; fi
+
 echo "$pass passed, $fail failed"
 (( fail == 0 ))
