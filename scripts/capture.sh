@@ -21,6 +21,8 @@ live_extensions > "$stage/extensions.txt"
 
 mv "$stage/settings.json" "$REPO_USER_DIR/settings.json"
 [[ -f "$stage/keybindings.json" ]] && mv "$stage/keybindings.json" "$REPO_USER_DIR/keybindings.json"
-if [[ -d "$stage/snippets" ]]; then rm -rf "$REPO_USER_DIR/snippets"; mv "$stage/snippets" "$REPO_USER_DIR/snippets"; fi
+# Snippets are a set: deletions in VS Code propagate.
+if [[ -d "$REPO_USER_DIR/snippets" ]]; then mv "$REPO_USER_DIR/snippets" "$stage/old-snippets"; fi
+if [[ -d "$stage/snippets" ]]; then mv "$stage/snippets" "$REPO_USER_DIR/snippets"; fi
 mv "$stage/extensions.txt" "$EXTENSIONS_FILE"
 echo "captured into $REPO_CONFIG_DIR — review with: git diff"

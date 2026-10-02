@@ -37,7 +37,7 @@ Needs Homebrew. Optional: Xcode (Swift formatting), Terraform, Docker.
 | `make prune` | `apply`, plus uninstall extensions not in `extensions.txt`. |
 | `make capture` | VS Code → repo. Staged: on any refusal the repo is untouched. |
 | `make check` | Settings, keybindings and extensions drift. |
-| `make test` / `make lint` | 25 hermetic tests / ShellCheck + actionlint. |
+| `make test` / `make lint` | 31 hermetic tests / ShellCheck + actionlint. |
 | `/sync [check\|apply\|prune\|capture\|bootstrap]` | Claude Code skill in `.claude/skills/sync/` that runs the above with guardrails. |
 
 ## What stays local
@@ -60,7 +60,7 @@ OpenAI, Slack, AWS, private keys).
 | Editing | Format on save per language, ESLint/Ruff fixes on save, rulers 80/100, autosave on focus change, sticky scroll, linked HTML tags, lockfile nesting, no minimap | |
 | Search | `.claude/worktrees` and `node_modules` excluded from search and file watching | 30 Claude worktrees |
 | Git | Prompt before committing to `main`/`master`; autofetch | |
-| AI | Claude Code (bypass permissions allowed), CodeRabbit; built-in Copilot chat off | everything else comes from `~/.claude` |
+| AI | Claude Code: bypass allowed and pinned as the start mode; CodeRabbit; built-in Copilot chat off | skills, agents, styles, hooks, MCP come from `~/.claude` |
 | CSV | Rainbow CSV with Gruvbox column colors, aligned columns, grid, sticky header | |
 
 ### Formatters

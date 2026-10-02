@@ -125,5 +125,26 @@ if missing or unwired:
 PY2
 then ok "formatter coverage"; else bad "formatter coverage"; fi
 
+# 15. Snippets are a set: check sees drift, apply mirrors the repo (old set kept in backup),
+#     capture propagates deletions.
+cp "$T/repo/Code/User/settings.json" "$T/user/settings.json"  # undo test 13's JSONC file
+"$ROOT/scripts/check.sh" >/dev/null && ok "baseline in sync before snippet tests" || bad "baseline in sync before snippet tests"
+mkdir -p "$T/repo/Code/User/snippets"; printf '{"a":{"prefix":"a","body":"a"}}\n' > "$T/repo/Code/User/snippets/a.json"
+"$ROOT/scripts/check.sh" >/dev/null 2>&1 && bad "check sees snippet drift" || ok "check sees snippet drift"
+"$ROOT/scripts/apply.sh" >/dev/null
+printf '{}\n' > "$T/user/snippets/stray.json"
+"$ROOT/scripts/apply.sh" >/dev/null
+[[ -f "$T/user/snippets/a.json" && ! -e "$T/user/snippets/stray.json" ]] && ok "apply mirrors snippet set" || bad "apply mirrors snippet set"
+ls "$T/user/.vscode-config-backups"/*/snippets/stray.json >/dev/null 2>&1 && ok "apply backs up replaced snippets" || bad "apply backs up replaced snippets"
+mv "$T/user/snippets" "$T/snippets.gone"
+"$ROOT/scripts/capture.sh" >/dev/null
+[[ ! -e "$T/repo/Code/User/snippets" ]] && ok "capture propagates snippet deletion" || bad "capture propagates snippet deletion"
+
+# 16. Two applies in the same second get distinct backups.
+before="$(find "$T/user/.vscode-config-backups" -mindepth 1 -maxdepth 1 -type d | wc -l)"
+"$ROOT/scripts/apply.sh" >/dev/null; "$ROOT/scripts/apply.sh" >/dev/null
+after="$(find "$T/user/.vscode-config-backups" -mindepth 1 -maxdepth 1 -type d | wc -l)"
+(( after - before == 2 )) && ok "each apply gets its own backup" || bad "each apply gets its own backup"
+
 echo "$pass passed, $fail failed"
 (( fail == 0 ))

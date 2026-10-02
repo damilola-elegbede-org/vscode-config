@@ -28,10 +28,11 @@ fi
 
 if (( ! DRY )) && ! have_code; then echo "error: '$CODE_BIN' not on PATH (run make bootstrap)"; exit 1; fi
 
-backup="$VSCODE_USER_DIR/.vscode-config-backups/$(date +%Y%m%d-%H%M%S)"
-run mkdir -p "$VSCODE_USER_DIR"
+run mkdir -p "$VSCODE_USER_DIR/.vscode-config-backups"
+if (( DRY )); then backup="$VSCODE_USER_DIR/.vscode-config-backups/<new>"
+else backup="$(mktemp -d "$VSCODE_USER_DIR/.vscode-config-backups/$(date +%Y%m%d-%H%M%S).XXXX")"; fi
 for f in settings.json keybindings.json; do
-  if [[ -f "$VSCODE_USER_DIR/$f" ]]; then run mkdir -p "$backup"; run cp "$VSCODE_USER_DIR/$f" "$backup/$f"; fi
+  if [[ -f "$VSCODE_USER_DIR/$f" ]]; then run cp "$VSCODE_USER_DIR/$f" "$backup/$f"; fi
 done
 if (( DRY )); then
   echo "would: write settings.json (repo keys + this machine's local keys)"
@@ -41,11 +42,9 @@ else
   mv "$tmp" "$VSCODE_USER_DIR/settings.json"
 fi
 run cp "$REPO_USER_DIR/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
-if [[ -d "$REPO_USER_DIR/snippets" ]]; then
-  if [[ -d "$VSCODE_USER_DIR/snippets" ]]; then run mkdir -p "$backup"; run cp -R "$VSCODE_USER_DIR/snippets" "$backup/"; fi
-  run mkdir -p "$VSCODE_USER_DIR/snippets"
-  run cp -R "$REPO_USER_DIR/snippets/." "$VSCODE_USER_DIR/snippets/"
-fi
+# Snippets are a set: the live folder becomes exactly the repo's; the old one moves into the backup.
+if [[ -d "$VSCODE_USER_DIR/snippets" ]]; then run mv "$VSCODE_USER_DIR/snippets" "$backup/snippets"; fi
+if [[ -d "$REPO_USER_DIR/snippets" ]]; then run cp -R "$REPO_USER_DIR/snippets" "$VSCODE_USER_DIR/snippets"; fi
 
 wanted="$(repo_extensions)"
 installed=""; have_code && installed="$(live_extensions)"
@@ -62,4 +61,4 @@ if [[ -n "$extra" ]]; then
     printf 'note: installed but not in repo (left alone; use --prune to remove):\n%s\n' "$extra"
   fi
 fi
-if (( DRY )); then echo "dry run: nothing written"; else echo "applied. backups (if any): $backup"; fi
+if (( DRY )); then echo "dry run: nothing written"; else rmdir "$backup" 2>/dev/null || true; echo "applied. backup: $backup"; fi

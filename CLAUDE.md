@@ -35,11 +35,13 @@ never commit on `main`.
 - Public repo: never commit secrets, tokens, emails, or machine paths. The
   capture guard refuses them; tell D which key tripped it.
 - `make test` and `make lint` before every commit. CI must be green to merge.
-- MCP servers, skills, agents, output styles, hooks and the permission mode
-  live in `~/.claude` (claude-config). The only Claude setting here is
-  `claudeCode.allowDangerouslySkipPermissions: true`, which unblocks the
-  `bypassPermissions` default from `~/.claude/settings.json`; leave
-  `claudeCode.initialPermissionMode` unset.
+- MCP servers, skills, agents, output styles and hooks live in `~/.claude`
+  (claude-config). Two Claude settings live here:
+  `claudeCode.allowDangerouslySkipPermissions: true` (the extension blocks
+  bypass without it) and `claudeCode.initialPermissionMode: "bypassPermissions"`.
+  The second is required: without it the extension reuses whatever mode was
+  last picked in its UI before it consults `~/.claude`
+  (`getInitialPermissionMode()` in the extension's `extension.js`).
 - Trusted folders are Claude's `trustedDirectories` in `~/.claude`, not VS Code
   workspace trust (`security.workspace.trust.*` stays local).
 - `~/.zshrc` must keep its tmux auto-start guarded with `[ -t 1 ]` and

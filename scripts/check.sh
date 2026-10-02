@@ -11,6 +11,10 @@ compare() {  # compare MODE FILE
 }
 compare same-settings settings.json
 compare same-json keybindings.json
+empty="$(mktemp -d)"; trap 'rmdir "$empty"' EXIT
+r="$REPO_USER_DIR/snippets"; l="$VSCODE_USER_DIR/snippets"
+[[ -d "$r" ]] || r="$empty"; [[ -d "$l" ]] || l="$empty"
+diff -rq "$r" "$l" >/dev/null || { echo "drift: snippets"; drift=1; }
 if have_code; then
   ext_diff="$(diff <(repo_extensions) <(live_extensions) || true)"
   [[ -n "$ext_diff" ]] && { echo "drift: extensions (< repo only, > VS Code only)"; echo "$ext_diff"; drift=1; }
