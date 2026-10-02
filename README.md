@@ -23,7 +23,7 @@ Requires Homebrew. Installs VS Code, JetBrainsMono Nerd Font, shfmt, then applie
 | Area | Choice | Why |
 | --- | --- | --- |
 | Editor theme | Gruvbox Dark Hard | Matches the tmux status bar palette |
-| Terminal panel | `#28fe14` on black, red cursor, blue selection | Mirrors the Ghostty config |
+| Terminal panel | Ghostty's full 16-color palette, `#28fe14` on black, red blinking block cursor, blue selection, copy-on-select, no contrast boost | Mirrors Ghostty (`ghostty +show-config`); transparency/blur not possible in VS Code |
 | Font | JetBrainsMono Nerd Font, editor 14 / terminal 13, ligatures | Same family as Ghostty |
 | Editing | Format on save (only languages with a formatter; Prettier only where a repo has a Prettier config), rulers 80/100, autosave on focus change, no minimap | |
 | Languages | JS/JSX/TS, Python, shell, Markdown, HTML/CSS, YAML, GitHub Actions, Docker, Terraform, Tailwind | Drawn from session edit history |
