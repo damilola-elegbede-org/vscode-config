@@ -136,5 +136,6 @@
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.lineHeight": 1,
-  "terminal.integrated.drawBoldTextInBrightColors": true
+  "terminal.integrated.drawBoldTextInBrightColors": true,
+  "claudeCode.allowDangerouslySkipPermissions": true
 }

@@ -6,6 +6,10 @@ symlinked; sync is manual and two-way.
 
 ## When D says "set up my VS Code" (fresh Mac)
 
+0. Claude Code's own config (skills, agents, output styles, hooks, MCP,
+   `permissions.defaultMode`) is NOT in this repo. The VS Code extension reads
+   `~/.claude` (settingSources user/project/local), so sync claude-config first
+   or the extension starts with a bare `~/.claude`.
 1. `make bootstrap` — installs VS Code, JetBrainsMono Nerd Font and shfmt via
    Homebrew, then applies the config and installs every extension.
 2. `make check` — must print `in sync`. Report its output verbatim.
@@ -30,6 +34,10 @@ commas from the VS Code file and re-run; do not hand-edit around it.
 ## Rules
 
 - Never commit secrets, tokens, or machine paths. The repo is public.
+- `claudeCode.allowDangerouslySkipPermissions: true` is the only Claude
+  permission setting here: it unblocks the `bypassPermissions` default set in
+  `~/.claude/settings.json`. Leave `claudeCode.initialPermissionMode` unset so
+  `~/.claude` stays the single source of truth.
 - MCP servers are not configured here; Claude Code reads them from `~/.claude`
   (managed by claude-config).
 - Run `make test` before every commit. CI runs ShellCheck and the same tests.

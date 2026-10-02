@@ -27,7 +27,7 @@ Requires Homebrew. Installs VS Code, JetBrainsMono Nerd Font, shfmt, then applie
 | Font | JetBrainsMono Nerd Font, editor 14 / terminal 13, ligatures | Same family as Ghostty |
 | Editing | Format on save (only languages with a formatter; Prettier only where a repo has a Prettier config), rulers 80/100, autosave on focus change, no minimap | |
 | Languages | JS/JSX/TS, Python, shell, Markdown, HTML/CSS, YAML, GitHub Actions, Docker, Terraform, Tailwind | Drawn from session edit history |
-| AI | Claude Code, CodeRabbit; built-in Copilot chat disabled | MCP lives in `~/.claude` (claude-config) |
+| AI | Claude Code, CodeRabbit; built-in Copilot chat disabled; bypass-permissions allowed | Skills, agents, styles, hooks, MCP and permission mode all come from `~/.claude` (claude-config) |
 
 Formatters per language: Prettier (JS/TS/JSON/CSS/HTML/Markdown), Ruff (Python),
 shfmt (shell), Red Hat YAML, HashiCorp Terraform.
