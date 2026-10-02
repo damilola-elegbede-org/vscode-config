@@ -170,5 +170,14 @@ grep -q "GitHub token" <<<"$out" && ! grep -q "ghp_" <<<"$out" && diff -r "$T/re
   && ok "capture refuses tokens in snippets" || bad "capture refuses tokens in snippets"
 mv "$T/user/snippets/leak.code-snippets" "$T/leak.gone"
 
+# 21. Snippet guard: \u-escaped tokens and symlinks are refused.
+printf '{"t":{"prefix":"t","body":"ghp_\\u0061bcdefghijklmnopqrstuvwxyz0123"}}\n' > "$T/user/snippets/esc.json"
+"$ROOT/scripts/capture.sh" >/dev/null 2>&1 && bad "capture refuses escaped tokens" || ok "capture refuses escaped tokens"
+mv "$T/user/snippets/esc.json" "$T/esc.gone"
+ln -s "$T/leak.gone" "$T/user/snippets/link.json"
+out="$("$ROOT/scripts/capture.sh" 2>&1 || true)"
+grep -q "symbolic link" <<<"$out" && ok "capture refuses snippet symlinks" || bad "capture refuses snippet symlinks"
+mv "$T/user/snippets/link.json" "$T/link.gone"
+
 echo "$pass passed, $fail failed"
 (( fail == 0 ))

@@ -82,9 +82,10 @@ def main():
         Path(dest).write_text(out)
     elif cmd == "scan-text":  # scan-text FILE...: leak patterns over raw text (JSONC snippets)
         for path in args:
-            text = Path(path).read_text()
+            raw = Path(path).read_text()
+            decoded = re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), raw)
             for label, rx in LEAKS:
-                if rx.search(text):
+                if rx.search(raw) or rx.search(decoded):
                     sys.exit(f"error: {path} contains a {label}; refusing to capture into a public repo.")
     elif cmd == "apply-settings":  # apply-settings REPO LIVE DEST: repo keys + the live machine's local keys
         repo, live, dest = args

@@ -13,6 +13,7 @@ if [[ -f "$VSCODE_USER_DIR/keybindings.json" ]]; then
   python3 "$HELPER" capture-json "$VSCODE_USER_DIR/keybindings.json" "$stage/keybindings.json"
 fi
 if [[ -d "$VSCODE_USER_DIR/snippets" ]] && [[ -n "$(ls -A "$VSCODE_USER_DIR/snippets")" ]]; then
+  if [[ -n "$(find "$VSCODE_USER_DIR/snippets" -type l)" ]]; then echo "error: snippets contain a symbolic link; refusing to capture"; exit 1; fi
   find "$VSCODE_USER_DIR/snippets" -type f -print0 | xargs -0 python3 "$HELPER" scan-text
   cp -R "$VSCODE_USER_DIR/snippets" "$stage/snippets"
 fi
