@@ -162,5 +162,13 @@ cp "$T/user/settings.json" "$T/live.before"; edit_live 'd["editor.fontSize"]=99'
 FAKE_CODE_FAIL=1 "$ROOT/scripts/apply.sh" >/dev/null 2>&1 && bad "broken code CLI aborts apply" || {
   cmp -s "$T/live.before" "$T/user/settings.json" && ok "broken code CLI aborts apply untouched" || bad "broken code CLI aborts apply untouched"; }
 
+# 20. Snippets get the same leak guard as settings (raw text, JSONC allowed).
+mkdir -p "$T/user/snippets"; printf '// note\n{"t":{"prefix":"t","body":"ghp_abcdefghijklmnopqrstuvwxyz0123"}}\n' > "$T/user/snippets/leak.code-snippets"
+cp -R "$T/repo" "$T/repo.snip"
+out="$("$ROOT/scripts/capture.sh" 2>&1 || true)"
+grep -q "GitHub token" <<<"$out" && ! grep -q "ghp_" <<<"$out" && diff -r "$T/repo.snip" "$T/repo" >/dev/null \
+  && ok "capture refuses tokens in snippets" || bad "capture refuses tokens in snippets"
+mv "$T/user/snippets/leak.code-snippets" "$T/leak.gone"
+
 echo "$pass passed, $fail failed"
 (( fail == 0 ))

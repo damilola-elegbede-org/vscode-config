@@ -80,6 +80,12 @@ def main():
         check_leak(src, data)
         out = dump(data)
         Path(dest).write_text(out)
+    elif cmd == "scan-text":  # scan-text FILE...: leak patterns over raw text (JSONC snippets)
+        for path in args:
+            text = Path(path).read_text()
+            for label, rx in LEAKS:
+                if rx.search(text):
+                    sys.exit(f"error: {path} contains a {label}; refusing to capture into a public repo.")
     elif cmd == "apply-settings":  # apply-settings REPO LIVE DEST: repo keys + the live machine's local keys
         repo, live, dest = args
         out = strip(load_strict(repo))
@@ -94,7 +100,7 @@ def main():
         a, b = args
         sys.exit(0 if load_strict(a) == load_strict(b) else 1)
     else:
-        sys.exit("usage: vsconfig.py validate|capture-settings|capture-json|apply-settings|same-settings|same-json ...")
+        sys.exit("usage: vsconfig.py validate|capture-settings|capture-json|scan-text|apply-settings|same-settings|same-json ...")
 
 
 if __name__ == "__main__":
