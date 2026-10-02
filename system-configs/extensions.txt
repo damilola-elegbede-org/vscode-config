@@ -1,6 +1,7 @@
 anthropic.claude-code
 bradlc.vscode-tailwindcss
 charliermarsh.ruff
+christian-kohler.path-intellisense
 coderabbit.coderabbit-vscode
 davidanson.vscode-markdownlint
 dbaeumer.vscode-eslint
@@ -10,8 +11,10 @@ esbenp.prettier-vscode
 github.vscode-github-actions
 github.vscode-pull-request-github
 hashicorp.terraform
+humao.rest-client
 jdinhlife.gruvbox
 jonathanharty.gruvbox-material-icon-theme
+mechatroner.rainbow-csv
 mikestead.dotenv
 mkhl.shfmt
 ms-azuretools.vscode-containers
@@ -29,3 +32,4 @@ tamasfe.even-better-toml
 timonwong.shellcheck
 usernamehw.errorlens
 vitest.explorer
+yzhang.markdown-all-in-one
