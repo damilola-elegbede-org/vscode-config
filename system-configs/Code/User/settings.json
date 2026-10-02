@@ -163,5 +163,84 @@
     ".env": ".env.*"
   },
   "markdown.validate.enabled": true,
-  "workbench.iconTheme": "gruvbox-material-icon-theme"
+  "workbench.iconTheme": "gruvbox-material-icon-theme",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "rainbow1",
+        "settings": {
+          "foreground": "#ebdbb2",
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": "keyword.rainbow2",
+        "settings": {
+          "foreground": "#fb4934",
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": "entity.name.function.rainbow3",
+        "settings": {
+          "foreground": "#b8bb26",
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": "comment.rainbow4",
+        "settings": {
+          "foreground": "#fabd2f",
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": "string.rainbow5",
+        "settings": {
+          "foreground": "#83a598",
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": "variable.parameter.rainbow6",
+        "settings": {
+          "foreground": "#d3869b",
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": "constant.numeric.rainbow7",
+        "settings": {
+          "foreground": "#8ec07c",
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": "entity.name.type.rainbow8",
+        "settings": {
+          "foreground": "#fe8019",
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": "markup.bold.rainbow9",
+        "settings": {
+          "foreground": "#bdae93",
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": "invalid.rainbow10",
+        "settings": {
+          "foreground": "#d65d0e",
+          "fontStyle": ""
+        }
+      }
+    ]
+  },
+  "rainbow_csv.virtual_alignment_mode": "always",
+  "rainbow_csv.virtual_alignment_char": "space",
+  "rainbow_csv.virtual_alignment_vertical_grid": true,
+  "rainbow_csv.enable_sticky_header": true,
+  "rainbow_csv.csv_lint_detect_trailing_spaces": true
 }
