@@ -83,7 +83,7 @@ system_profiler SPFontsDataType | grep -c 'Family: JetBrainsMono Nerd Font'
                                                # expect: a number > 0
 ```
 
-Then ask D to confirm visually: charcoal editor (`#141414`), black terminal
+Then ask D to confirm visually: Dark 2026 editor (neutral dark; no charcoal override), black terminal
 panel with green text, and the Claude Code panel showing **Bypass
 permissions** as the mode.
 
