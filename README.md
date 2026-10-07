@@ -55,7 +55,7 @@ OpenAI, Slack, AWS, private keys).
 
 | Area | Choice | Source |
 | --- | --- | --- |
-| Theme | "Gruvbox Charcoal": Gruvbox Dark Hard with a deep-charcoal `#141414` editor and `#0f0f0f` panels (overrides scoped to that theme); Gruvbox Material icons; high-contrast auto-detect off | tmux bar palette; terminal panel stays Ghostty black |
+| Theme | Built-in "Dark 2026"; Gruvbox Material icons; high-contrast auto-detect off. Dormant Gruvbox Charcoal overrides stay in settings, scoped to `[Gruvbox Dark Hard]` | terminal panel stays Ghostty black |
 | Terminal panel | Ghostty's 16-color palette, `#28fe14` on black, red blinking block cursor, blue selection, copy-on-select, no contrast boost | `ghostty +show-config` |
 | Font | JetBrainsMono Nerd Font: editor 14, terminal 13, ligatures | Ghostty |
 | Editing | Format on save per language, ESLint/Ruff fixes on save, rulers 80/100, autosave on focus change, sticky scroll, linked HTML tags, lockfile nesting, no minimap | |

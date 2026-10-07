@@ -77,7 +77,7 @@ Run all of these and report the output verbatim:
 make check                                     # expect: in sync
 sqlite3 ~/Library/Application\ Support/Code/User/globalStorage/state.vscdb \
   "select substr(value,1,80) from ItemTable where key='colorThemeData';"
-                                               # expect: ..."label":"Gruvbox Dark Hard"...
+                                               # expect: ..."label":"Dark 2026"...
 /bin/zsh -ilc 'echo shell-ok'                  # expect: shell-ok, exit 0
 system_profiler SPFontsDataType | grep -c 'Family: JetBrainsMono Nerd Font'
                                                # expect: a number > 0
@@ -108,7 +108,7 @@ symptom, the cause, and the fix. CI must be green to merge.
 ## Done when
 
 - [ ] `make check` prints `in sync`
-- [ ] Theme row shows `Gruvbox Dark Hard`
+- [ ] Theme row shows `Dark 2026`
 - [ ] `zsh -ilc` exits 0
 - [ ] JetBrainsMono Nerd Font installed
 - [ ] D confirmed the look and the Bypass permissions mode

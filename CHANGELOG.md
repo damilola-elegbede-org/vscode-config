@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Theme: built-in Dark 2026 replaces Gruvbox Dark Hard. The Gruvbox Charcoal
+  overrides are scoped to the old theme and stay dormant.
+
 - JetBrainsMono Nerd Font only (no fallbacks) everywhere VS Code allows a font
   setting: editor, markdown preview, chat (including the
   Claude Code panel), chat code blocks, debug console, commit message box,
