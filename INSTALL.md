@@ -27,7 +27,7 @@ hooks, MCP, permission mode). Sync it before VS Code so the extension starts
 with D's setup.
 
 ```bash
-mkdir -p ~/repos && cd ~/repos
+mkdir -p ~/dev && cd ~/dev
 git clone https://github.com/damilola-elegbede-org/claude-config.git
 cd claude-config && ./scripts/sync.sh
 ```
@@ -40,7 +40,7 @@ claude-config problem, not this repo's.
 ## 2. Clone this repo and preview
 
 ```bash
-cd ~/repos
+cd ~/dev
 git clone https://github.com/damilola-elegbede-org/vscode-config.git
 cd vscode-config
 make plan
@@ -65,9 +65,16 @@ step 4 (step 5's `make check` cannot pass with it missing).
 
 ## 4. First launch (D)
 
-**D:** open VS Code once (`open -a "Visual Studio Code"`). macOS may ask to
-confirm opening an app downloaded from the internet; choose Open. Wait for the
-window, then continue.
+**D:** open VS Code on the dev folder (`open -a "Visual Studio Code" ~/dev`).
+VS Code has no default-folder setting. Its default `window.restoreWindows`
+(`all`, machine-local, never captured) reopens all windows from the previous
+session, so `~/dev` reopens on later launches only until another folder is
+opened. To always land in `~/dev`, launch with `code ~/dev` or
+`open -a "Visual Studio Code" ~/dev`, or use the shell `code` wrapper (in the
+dotfiles repo's `zsh/zshrc`; makes bare `code` open `~/dev`; needs the dotfiles
+`install.sh`). Dock and Spotlight launches restore the last session. macOS may
+ask to confirm opening an app downloaded from the internet; choose Open. Wait for
+the window, then continue.
 
 ## 5. Verify
 
@@ -77,13 +84,13 @@ Run all of these and report the output verbatim:
 make check                                     # expect: in sync
 sqlite3 ~/Library/Application\ Support/Code/User/globalStorage/state.vscdb \
   "select substr(value,1,80) from ItemTable where key='colorThemeData';"
-                                               # expect: ..."label":"Gruvbox Dark Hard"...
+                                               # expect: ..."label":"Dark 2026"...
 /bin/zsh -ilc 'echo shell-ok'                  # expect: shell-ok, exit 0
 system_profiler SPFontsDataType | grep -c 'Family: JetBrainsMono Nerd Font'
                                                # expect: a number > 0
 ```
 
-Then ask D to confirm visually: charcoal editor (`#141414`), black terminal
+Then ask D to confirm visually: Dark 2026 editor (neutral dark; no charcoal override), black terminal
 panel with green text, and the Claude Code panel showing **Bypass
 permissions** as the mode.
 
@@ -93,7 +100,7 @@ permissions** as the mode.
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | "Unable to resolve your shell environment"         | `~/.zshrc` auto-starts tmux in every interactive shell, including VS Code's background `zsh -ilc` | Guard the autostart: add `[ -t 1 ] && [ -z "$VSCODE_RESOLVING_ENVIRONMENT" ]` to the `if` that runs `exec tmux`. Back up `~/.zshrc` first. |
 | Theme is High Contrast (black with orange borders) | VS Code auto-switched on first launch                                                             | Already prevented by `window.autoDetectHighContrast: false`; if seen, run `make apply` and reload the window                               |
-| Theme silently stays default                       | Theme label typo or extension missing                                                             | `make check`; confirm `jdinhlife.gruvbox` is installed                                                                                     |
+| Theme silently stays default                       | Theme label typo, or VS Code older than the built-in Dark 2026 theme                              | `make check`; `code --version`; upgrade VS Code (`brew upgrade --cask visual-studio-code`) and reload the window                           |
 | `make capture`/`check` says "not strict JSON"      | A comment or trailing comma in VS Code's file                                                     | Remove it in VS Code; do not hand-edit the repo around it                                                                                  |
 | `code: command not found`                          | Cask link missing                                                                                 | `brew reinstall --cask visual-studio-code`                                                                                                 |
 | Claude panel not in Bypass                         | Extension remembers an old UI choice, or `~/.claude` not synced                                   | Step 1 check; `claudeCode.initialPermissionMode` is pinned in this repo                                                                    |
@@ -108,7 +115,7 @@ symptom, the cause, and the fix. CI must be green to merge.
 ## Done when
 
 - [ ] `make check` prints `in sync`
-- [ ] Theme row shows `Gruvbox Dark Hard`
+- [ ] Theme row shows `Dark 2026`
 - [ ] `zsh -ilc` exits 0
 - [ ] JetBrainsMono Nerd Font installed
 - [ ] D confirmed the look and the Bypass permissions mode
