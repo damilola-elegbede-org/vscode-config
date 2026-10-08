@@ -27,7 +27,7 @@ hooks, MCP, permission mode). Sync it before VS Code so the extension starts
 with D's setup.
 
 ```bash
-mkdir -p ~/repos && cd ~/repos
+mkdir -p ~/dev && cd ~/dev
 git clone https://github.com/damilola-elegbede-org/claude-config.git
 cd claude-config && ./scripts/sync.sh
 ```
@@ -40,7 +40,7 @@ claude-config problem, not this repo's.
 ## 2. Clone this repo and preview
 
 ```bash
-cd ~/repos
+cd ~/dev
 git clone https://github.com/damilola-elegbede-org/vscode-config.git
 cd vscode-config
 make plan
@@ -96,7 +96,7 @@ permissions** as the mode.
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | "Unable to resolve your shell environment"         | `~/.zshrc` auto-starts tmux in every interactive shell, including VS Code's background `zsh -ilc` | Guard the autostart: add `[ -t 1 ] && [ -z "$VSCODE_RESOLVING_ENVIRONMENT" ]` to the `if` that runs `exec tmux`. Back up `~/.zshrc` first. |
 | Theme is High Contrast (black with orange borders) | VS Code auto-switched on first launch                                                             | Already prevented by `window.autoDetectHighContrast: false`; if seen, run `make apply` and reload the window                               |
-| Theme silently stays default                       | Theme label typo or extension missing                                                             | `make check`; confirm `jdinhlife.gruvbox` is installed                                                                                     |
+| Theme silently stays default                       | Theme label typo, or VS Code older than the built-in Dark 2026 theme                              | `make check`; `code --version`; upgrade VS Code (`brew upgrade --cask visual-studio-code`) and reload the window                           |
 | `make capture`/`check` says "not strict JSON"      | A comment or trailing comma in VS Code's file                                                     | Remove it in VS Code; do not hand-edit the repo around it                                                                                  |
 | `code: command not found`                          | Cask link missing                                                                                 | `brew reinstall --cask visual-studio-code`                                                                                                 |
 | Claude panel not in Bypass                         | Extension remembers an old UI choice, or `~/.claude` not synced                                   | Step 1 check; `claudeCode.initialPermissionMode` is pinned in this repo                                                                    |
