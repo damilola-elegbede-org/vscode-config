@@ -65,9 +65,12 @@ step 4 (step 5's `make check` cannot pass with it missing).
 
 ## 4. First launch (D)
 
-**D:** open VS Code once (`open -a "Visual Studio Code"`). macOS may ask to
-confirm opening an app downloaded from the internet; choose Open. Wait for the
-window, then continue.
+**D:** open VS Code once on the dev folder (`open -a "Visual Studio Code" ~/dev`).
+VS Code has no default-folder setting; its default `window.restoreWindows`
+(`all`, machine-local, never captured) reopens the last folder, so every later
+launch starts in `~/dev`. macOS may ask
+to confirm opening an app downloaded from the internet; choose Open. Wait for
+the window, then continue.
 
 ## 5. Verify
 

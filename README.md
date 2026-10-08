@@ -55,6 +55,7 @@ OpenAI, Slack, AWS, private keys).
 
 | Area | Choice | Source |
 | --- | --- | --- |
+| Startup folder | `~/dev` (all repos live there). VS Code has no default-folder setting: its default `window.restoreWindows` (`all`) reopens the last folder, and first launch opens `~/dev` (INSTALL step 4), and bare `code` opens it via the dotfiles zshrc | dotfiles repo |
 | Theme | Built-in "Dark 2026"; Gruvbox Material icons; high-contrast auto-detect off. Dormant Gruvbox Charcoal overrides stay in settings, scoped to `[Gruvbox Dark Hard]` | terminal panel stays Ghostty black |
 | Terminal panel | Ghostty's 16-color palette, `#28fe14` on black, red blinking block cursor, blue selection, copy-on-select, no contrast boost | `ghostty +show-config` |
 | Font | JetBrainsMono Nerd Font: editor 14, terminal 13, ligatures | Ghostty |
