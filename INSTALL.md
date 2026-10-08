@@ -65,11 +65,15 @@ step 4 (step 5's `make check` cannot pass with it missing).
 
 ## 4. First launch (D)
 
-**D:** open VS Code once on the dev folder (`open -a "Visual Studio Code" ~/dev`).
-VS Code has no default-folder setting; its default `window.restoreWindows`
-(`all`, machine-local, never captured) reopens the last folder, so every later
-launch starts in `~/dev`. macOS may ask
-to confirm opening an app downloaded from the internet; choose Open. Wait for
+**D:** open VS Code on the dev folder (`open -a "Visual Studio Code" ~/dev`).
+VS Code has no default-folder setting. Its default `window.restoreWindows`
+(`all`, machine-local, never captured) reopens all windows from the previous
+session, so `~/dev` reopens on later launches only until another folder is
+opened. To always land in `~/dev`, launch with `code ~/dev` or
+`open -a "Visual Studio Code" ~/dev`, or use the shell `code` wrapper (in the
+dotfiles repo's `zsh/zshrc`; makes bare `code` open `~/dev`; needs the dotfiles
+`install.sh`). Dock and Spotlight launches restore the last session. macOS may
+ask to confirm opening an app downloaded from the internet; choose Open. Wait for
 the window, then continue.
 
 ## 5. Verify
