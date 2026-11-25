@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Terminal panel matches Ghostty's current config: `#121314` background,
+  white text, Ghostty's default palette, inverted selection, no
+  copy-on-select, bold not brightened (was the phosphor look).
+- Claude Code starts in the right-hand secondary side bar.
+- Removed the Terraform and Containers extensions (and their side-bar
+  buttons); no repo here uses them.
+
 - Theme: Claude Code Dark (extension `ashwingopalsamy.claude-code-theme`)
   replaces built-in Dark 2026. The previous theme is backed up at git tag
   `backup/theme-dark-2026`; revert by setting `workbench.colorTheme` to
