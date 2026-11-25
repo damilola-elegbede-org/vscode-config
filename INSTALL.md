@@ -84,13 +84,13 @@ Run all of these and report the output verbatim:
 make check                                     # expect: in sync
 sqlite3 ~/Library/Application\ Support/Code/User/globalStorage/state.vscdb \
   "select json_extract(value,'$.label') from ItemTable where key='colorThemeData';"
-                                               # expect: Claude Code Dark
+                                               # expect: Dark 2026
 /bin/zsh -ilc 'echo shell-ok'                  # expect: shell-ok, exit 0
 system_profiler SPFontsDataType | grep -c 'Family: JetBrainsMono Nerd Font'
                                                # expect: a number > 0
 ```
 
-Then ask D to confirm visually: Claude Code Dark editor (warm Claude palette; no charcoal override), Ghostty-matched `#121314` terminal
+Then ask D to confirm visually: Dark 2026 editor (neutral dark; no charcoal override), Ghostty-matched `#121314` terminal
 panel with white text, and the Claude Code panel showing **Bypass
 permissions** as the mode.
 
@@ -115,7 +115,7 @@ symptom, the cause, and the fix. CI must be green to merge.
 ## Done when
 
 - [ ] `make check` prints `in sync`
-- [ ] Theme row shows `Claude Code Dark`
+- [ ] Theme row shows `Dark 2026`
 - [ ] `zsh -ilc` exits 0
 - [ ] JetBrainsMono Nerd Font installed
 - [ ] D confirmed the look and the Bypass permissions mode

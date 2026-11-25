@@ -1,5 +1,4 @@
 anthropic.claude-code
-ashwingopalsamy.claude-code-theme
 bradlc.vscode-tailwindcss
 charliermarsh.ruff
 christian-kohler.path-intellisense

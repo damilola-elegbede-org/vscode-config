@@ -57,7 +57,7 @@ OpenAI, Slack, AWS, private keys).
 | Area | Choice | Source |
 | --- | --- | --- |
 | Startup folder | `~/dev` (all repos live there). VS Code has no default-folder setting: its default `window.restoreWindows` (`all`) restores the previous session's windows, so `~/dev` persists only until another folder is opened. Launch with `code ~/dev`, or bare `code` via the dotfiles zshrc wrapper (makes it open `~/dev`; needs dotfiles `install.sh`). Dock/Spotlight launches restore the last session | dotfiles repo |
-| Theme | "Claude Code Dark" from the Claude Code Theme extension (Ashwin Gopalsamy). Previous theme, built-in "Dark 2026", is backed up at git tag `backup/theme-dark-2026`: set `workbench.colorTheme` back to `"Dark 2026"` to revert. Gruvbox Material icons; high-contrast auto-detect off. Dormant Gruvbox Charcoal overrides stay in settings, scoped to `[Gruvbox Dark Hard]` | terminal panel matches Ghostty `#121314` |
+| Theme | Built-in "Dark 2026"; Gruvbox Material icons; high-contrast auto-detect off. Dormant Gruvbox Charcoal overrides stay in settings, scoped to `[Gruvbox Dark Hard]` | terminal panel matches Ghostty `#121314` |
 | Terminal panel | Matches Ghostty (dotfiles `ghostty/config` + Ghostty 1.4 defaults): white `#ffffff` on `#121314`, Ghostty's 16-color palette, white blinking block cursor, inverted selection, no copy-on-select, bold not brightened, no contrast boost. VS Code can't do Ghostty's 0.8 opacity and blur | `ghostty +show-config` |
 | Layout | Claude Code opens in the secondary side bar (right) and the side bar shows on start; files open in the editor (middle). Claude's `lockEditorGroups` (default on) keeps files out of Claude's group | |
 | Font | JetBrainsMono Nerd Font: editor 14, terminal 13, ligatures | Ghostty |
@@ -78,7 +78,7 @@ OpenAI, Slack, AWS, private keys).
 | YAML / TOML / Swift | Red Hat YAML / Even Better TOML / swift-format | yes |
 | SQL | SQLTools | manual only (migrations never reformat silently) |
 
-### Extensions (39)
+### Extensions (38)
 
 Languages and lint: ESLint, Prettier, Python + Pylance + Ruff, ShellCheck, shfmt,
 markdownlint, Markdown All in One, YAML, TOML, Docker,
@@ -86,7 +86,7 @@ Swift, Tailwind CSS, Pretty TypeScript Errors, EditorConfig, Error Lens, Code
 Spell Checker, Path Intellisense. Testing: Vitest, Playwright. Data: SQLTools +
 SQLite driver, SQLite Viewer, Rainbow CSV, DotENV. Other: Excalidraw, REST
 Client, Live Preview, GitHub Actions, GitHub Pull Requests, Gruvbox theme and
-icons, Claude Code, Claude Code Theme, CodeRabbit. Dependencies pulled in automatically (debugpy,
+icons, Claude Code, CodeRabbit. Dependencies pulled in automatically (debugpy,
 Python Environments, LLDB DAP) are listed too so `check` stays clean.
 
 Every ID is verified by install before it is committed, and CI checks each
