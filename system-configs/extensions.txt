@@ -10,7 +10,6 @@ editorconfig.editorconfig
 esbenp.prettier-vscode
 github.vscode-github-actions
 github.vscode-pull-request-github
-hashicorp.terraform
 humao.rest-client
 jdinhlife.gruvbox
 jonathanharty.gruvbox-material-icon-theme
@@ -18,7 +17,6 @@ llvm-vs-code-extensions.lldb-dap
 mechatroner.rainbow-csv
 mikestead.dotenv
 mkhl.shfmt
-ms-azuretools.vscode-containers
 ms-playwright.playwright
 ms-python.debugpy
 ms-python.python

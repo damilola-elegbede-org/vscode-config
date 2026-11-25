@@ -56,7 +56,7 @@ make bootstrap
 
 Installs VS Code, JetBrainsMono Nerd Font and shfmt with Homebrew, then
 applies settings, keybindings and 40 extensions. Safe to re-run. Notes about
-missing Terraform/Docker/Xcode are informational.
+missing Docker/Xcode are informational.
 
 Check: `which code` prints a path, and the run ends with `applied. backup: …`.
 If an extension install fails, re-run `make apply` once. If it fails again,
@@ -83,15 +83,15 @@ Run all of these and report the output verbatim:
 ```bash
 make check                                     # expect: in sync
 sqlite3 ~/Library/Application\ Support/Code/User/globalStorage/state.vscdb \
-  "select substr(value,1,80) from ItemTable where key='colorThemeData';"
-                                               # expect: ..."label":"Dark 2026"...
+  "select json_extract(value,'$.label') from ItemTable where key='colorThemeData';"
+                                               # expect: Dark 2026
 /bin/zsh -ilc 'echo shell-ok'                  # expect: shell-ok, exit 0
 system_profiler SPFontsDataType | grep -c 'Family: JetBrainsMono Nerd Font'
                                                # expect: a number > 0
 ```
 
-Then ask D to confirm visually: Dark 2026 editor (neutral dark; no charcoal override), black terminal
-panel with green text, and the Claude Code panel showing **Bypass
+Then ask D to confirm visually: Dark 2026 editor (neutral dark; no charcoal override), Ghostty-matched `#121314` terminal
+panel with white text, and the Claude Code panel showing **Bypass
 permissions** as the mode.
 
 ## Known problems and fixes
