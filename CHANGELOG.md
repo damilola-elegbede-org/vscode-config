@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Theme: Claude Code Dark (extension `ashwingopalsamy.claude-code-theme`)
+  replaces built-in Dark 2026. The previous theme is backed up at git tag
+  `backup/theme-dark-2026`; revert by setting `workbench.colorTheme` to
+  `"Dark 2026"`.
+
 - Theme: built-in Dark 2026 replaces Gruvbox Dark Hard. The Gruvbox Charcoal
   overrides are scoped to the old theme and stay dormant.
 

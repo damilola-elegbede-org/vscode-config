@@ -57,7 +57,7 @@ OpenAI, Slack, AWS, private keys).
 | Area | Choice | Source |
 | --- | --- | --- |
 | Startup folder | `~/dev` (all repos live there). VS Code has no default-folder setting: its default `window.restoreWindows` (`all`) restores the previous session's windows, so `~/dev` persists only until another folder is opened. Launch with `code ~/dev`, or bare `code` via the dotfiles zshrc wrapper (makes it open `~/dev`; needs dotfiles `install.sh`). Dock/Spotlight launches restore the last session | dotfiles repo |
-| Theme | Built-in "Dark 2026"; Gruvbox Material icons; high-contrast auto-detect off. Dormant Gruvbox Charcoal overrides stay in settings, scoped to `[Gruvbox Dark Hard]` | terminal panel stays Ghostty black |
+| Theme | "Claude Code Dark" from the Claude Code Theme extension (Ashwin Gopalsamy). Previous theme, built-in "Dark 2026", is backed up at git tag `backup/theme-dark-2026`: set `workbench.colorTheme` back to `"Dark 2026"` to revert. Gruvbox Material icons; high-contrast auto-detect off. Dormant Gruvbox Charcoal overrides stay in settings, scoped to `[Gruvbox Dark Hard]` | terminal panel stays Ghostty black |
 | Terminal panel | Ghostty's 16-color palette, `#28fe14` on black, red blinking block cursor, blue selection, copy-on-select, no contrast boost | `ghostty +show-config` |
 | Font | JetBrainsMono Nerd Font: editor 14, terminal 13, ligatures | Ghostty |
 | Editing | Format on save per language, ESLint/Ruff fixes on save, rulers 80/100, autosave on focus change, sticky scroll, linked HTML tags, lockfile nesting, no minimap | |
@@ -77,7 +77,7 @@ OpenAI, Slack, AWS, private keys).
 | YAML / Terraform / TOML / Swift | Red Hat YAML / HashiCorp / Even Better TOML / swift-format | yes |
 | SQL | SQLTools | manual only (migrations never reformat silently) |
 
-### Extensions (40)
+### Extensions (41)
 
 Languages and lint: ESLint, Prettier, Python + Pylance + Ruff, ShellCheck, shfmt,
 markdownlint, Markdown All in One, YAML, TOML, Terraform, Docker + Containers,
@@ -85,7 +85,7 @@ Swift, Tailwind CSS, Pretty TypeScript Errors, EditorConfig, Error Lens, Code
 Spell Checker, Path Intellisense. Testing: Vitest, Playwright. Data: SQLTools +
 SQLite driver, SQLite Viewer, Rainbow CSV, DotENV. Other: Excalidraw, REST
 Client, Live Preview, GitHub Actions, GitHub Pull Requests, Gruvbox theme and
-icons, Claude Code, CodeRabbit. Dependencies pulled in automatically (debugpy,
+icons, Claude Code, Claude Code Theme, CodeRabbit. Dependencies pulled in automatically (debugpy,
 Python Environments, LLDB DAP) are listed too so `check` stays clean.
 
 Every ID is verified by install before it is committed, and CI checks each
