@@ -76,15 +76,14 @@ OpenAI, Slack, AWS, private keys).
 | Python | Ruff (+ fix-all, organize imports) | yes |
 | Shell (incl. `*.sh.mutation`) | shfmt | yes |
 | YAML / TOML / Swift | Red Hat YAML / Even Better TOML / swift-format | yes |
-| SQL | SQLTools | manual only (migrations never reformat silently) |
 
-### Extensions (38)
+### Extensions (35)
 
 Languages and lint: ESLint, Prettier, Python + Pylance + Ruff, ShellCheck, shfmt,
 markdownlint, Markdown All in One, YAML, TOML, Docker,
-Swift, Tailwind CSS, Pretty TypeScript Errors, EditorConfig, Error Lens, Code
-Spell Checker, Path Intellisense. Testing: Vitest, Playwright. Data: SQLTools +
-SQLite driver, SQLite Viewer, Rainbow CSV, DotENV. Other: Excalidraw, REST
+Swift, Tailwind CSS, EditorConfig, Error Lens, Code
+Spell Checker, Path Intellisense. Testing: Vitest, Playwright. Data:
+SQLite Viewer, Rainbow CSV, DotENV. Other: Excalidraw, REST
 Client, Live Preview, GitHub Actions, GitHub Pull Requests, Gruvbox theme and
 icons, Claude Code, CodeRabbit. Dependencies pulled in automatically (debugpy,
 Python Environments, LLDB DAP) are listed too so `check` stays clean.
