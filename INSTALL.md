@@ -55,7 +55,7 @@ make bootstrap
 ```
 
 Installs VS Code, JetBrainsMono Nerd Font and shfmt with Homebrew, then
-applies settings, keybindings and 40 extensions. Safe to re-run. Notes about
+applies settings, keybindings and 35 extensions. Safe to re-run. Notes about
 missing Docker/Xcode are informational.
 
 Check: `which code` prints a path, and the run ends with `applied. backup: …`.

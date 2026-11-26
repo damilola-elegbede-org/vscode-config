@@ -279,9 +279,5 @@
     "editor.defaultFormatter": "swiftlang.swift-vscode",
     "editor.formatOnSave": true
   },
-  "[sql]": {
-    "editor.defaultFormatter": "mtxr.sqltools",
-    "editor.formatOnSave": false
-  },
   "claudeCode.initialPermissionMode": "bypassPermissions"
 }
