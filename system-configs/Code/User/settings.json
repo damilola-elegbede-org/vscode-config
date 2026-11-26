@@ -163,6 +163,7 @@
   "claudeCode.allowDangerouslySkipPermissions": true,
   "claudeCode.preferredLocation": "sidebar",
   "workbench.secondarySideBar.defaultVisibility": "visible",
+  "workbench.sideBar.location": "left",
   "claudeCode.hideOnboarding": true,
   "search.exclude": {
     "**/.claude/worktrees": true,
